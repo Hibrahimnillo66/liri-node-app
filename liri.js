@@ -44,6 +44,7 @@ var pick = function(caseData, term) {
             song.getArtist(term);
             break;
         case "spotify-this-song":
+        console.log("\nArtists that contain " + term + " in one of their songs. \n")
             song.getSpotify(term);
             break;
         case "movie-this":

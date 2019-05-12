@@ -12,7 +12,10 @@ var getArtistNames = function(artist) {
 var SONG = function(){
 
     //This will put a divider line for each result
-    var divider = "\n------------------------------------------------------\n\n";
+    var divider = "\n------------------------------------------------------\n" +
+    "------------------------------------------------------\n" + 
+    "------------------------------------------------------\n" +
+    "End of results for this search ^^^ \n\n\n\n";
 
 
     this.getArtist = function(artist){
@@ -22,15 +25,28 @@ var SONG = function(){
 
             var jsonData = response.data;
 
+            var artistData = [];
+
             for(var i = 0; i < jsonData.length; i++){
 
+                console.log(i);
                 console.log("Name of the Venue: " + jsonData[i].venue.name);
                 console.log("Venue Location: " + jsonData[i].venue.city + ","+jsonData[i].venue.country);
                 console.log("Date of the Event: " + jsonData[i].datetime);
                 console.log("\n---------------------------------------------------------------\n");
+
+                artistData.push(i + "\n Name of the Venue: " + jsonData[i].venue.name +
+                                "\n Venue Location: " + jsonData[i].venue.city + ","+jsonData[i].venue.country +
+                                "\n Date of the Event: " + jsonData[i].datetime +
+                                "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
+                                );
                
             }
             
+            fs.appendFile("log.txt", artistData + divider, function (err) {
+                if (err) throw err;
+                console.log(artistData);
+            });
 
         });
 
@@ -44,18 +60,31 @@ var SONG = function(){
             }
         
             var songs = data.tracks.items; 
+            
+            var songData = []
+
             for(var i = 0; i < songs.length; i++){
                
+                
                 console.log(i);
                 console.log("artist(s): " + songs[i].artists.map(getArtistNames));
                 console.log("song name: " + songs[i].name);
                 console.log("previous song: " + songs[i].preview_url);
                 console.log("album: " + songs[i].album.name);
-                console.log("--------------------------------------------------------------");
+                console.log("--------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                
+
+                songData.push(i + "\n artist(s): " + songs[i].artists.map(getArtistNames)+
+                                  "\n song name: " + songs[i].name +
+                                  "\n previous song: " + songs[i].preview_url +
+                                  "\n album: " + songs[i].album.name +
+                                "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
+                                );
+                
                 
             }
 
-            var songData = [i];
+            
             fs.appendFile("log.txt", songData + divider, function (err) {
                 if (err) throw err;
                 console.log(songData);
