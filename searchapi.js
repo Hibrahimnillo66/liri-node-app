@@ -33,7 +33,7 @@ var SONG = function(){
                 console.log(i);
                 console.log("Name of the Venue: " + jsonData[i].venue.name);
                 console.log("Venue Location: " + jsonData[i].venue.city + ","+jsonData[i].venue.country);
-                console.log("Date of the Event: " + jsonData[i].datetime);
+                console.log("Date of the Event: " + moment(jsonData[i].datetime).format("MM-DD-YYYY T HH:mm");
                 console.log("\n---------------------------------------------------------------\n");
 
                 artistData.push(i + "\n Name of the Venue: " + jsonData[i].venue.name +
