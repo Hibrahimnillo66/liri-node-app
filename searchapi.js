@@ -3,6 +3,7 @@ var fs = require('fs');
 var Spotify = require('node-spotify-api');
 var keys = require("./keys");
 var spotify = new Spotify(keys.spotify);
+var moment = require('moment');
 
 var getArtistNames = function(artist) {
     return artist.name;
@@ -37,7 +38,7 @@ var SONG = function(){
 
                 artistData.push(i + "\n Name of the Venue: " + jsonData[i].venue.name +
                                 "\n Venue Location: " + jsonData[i].venue.city + ","+jsonData[i].venue.country +
-                                "\n Date of the Event: " + jsonData[i].datetime +
+                                "\n Date of the Event: " + moment(jsonData[i].datetime).format("MM-DD-YYYY T HH:mm") +
                                 "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
                                 );
                
