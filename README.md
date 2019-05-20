@@ -10,6 +10,8 @@ This is a project for my Tecnologico de Monterrey's Bootcamp, we are currently l
 
 ### What it does
 
+Liri helps you find events, artists and movies using node.js in the command line when entering a handler and a specific input.
+
 #### Bands in Town
 `node liri.js concert-this <insert Artist handle>`
 
